@@ -16,7 +16,7 @@ export default class Todo extends React.Component<ITodoProps> {
 
     public render(): JSX.Element {
         return (
-            <div>
+            <>
                 <input
                     type="text"
                     defaultValue={this.props.todo.value}
@@ -25,7 +25,8 @@ export default class Todo extends React.Component<ITodoProps> {
                 <button onClick={(): void => this.props.onClickHandler(this.props.todo.id)}>
                     <FontAwesomeIcon icon={faTrashAlt}/>
                 </button>
-            </div>
+                <br />
+            </>
         );
     }
 }

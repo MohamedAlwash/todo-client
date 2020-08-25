@@ -43,14 +43,11 @@ export default class App extends React.Component<IAppProps, IAppState> {
 
     private editTod = (event: React.ChangeEvent<HTMLInputElement>, todoId: number): void => {
         const value: string = event.target.value;
-        const todo: ITodo = {
-            id: todoId,
-            value 
-        };
-        const todos = this.state.todos.filter(todo => todo.id !== todoId);
-        todos.push(todo);
+        const todoIndex = this.state.todos.findIndex(todo => todo.id === todoId);
+        const newTodos = [...this.state.todos];
+        newTodos[todoIndex] = {...newTodos[todoIndex], value};
 
-        this.setState({ todos });
+        this.setState({ todos: newTodos });
     }
 
     public render = (): JSX.Element => {
@@ -59,6 +56,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
                 <button onClick={this.addTodo}>
                     <FontAwesomeIcon icon={faPlus}/>
                 </button>
+                <br />
                 {this.state.todos.map(todo => {
                     return <Todo todo={todo} key={todo.id} onChangeHandler={this.editTod} onClickHandler={this.removeTodo} />;
                 })}
