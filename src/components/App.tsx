@@ -56,8 +56,8 @@ export default class App extends React.Component<IAppProps, IAppState> {
     public render = (): JSX.Element => {
         return (
             <>
-                <button className="btn btn-outline-primary" type="button" onClick={this.addTodo}>
-                    <FontAwesomeIcon icon={faPlus}/> add
+                <button onClick={this.addTodo}>
+                    <FontAwesomeIcon icon={faPlus}/>
                 </button>
                 {this.state.todos.map(todo => {
                     return <Todo todo={todo} key={todo.id} onChangeHandler={this.editTod} onClickHandler={this.removeTodo} />;

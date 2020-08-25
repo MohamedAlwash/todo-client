@@ -16,15 +16,14 @@ export default class Todo extends React.Component<ITodoProps> {
 
     public render(): JSX.Element {
         return (
-            <div className="input-group">
+            <div>
                 <input
                     type="text"
-                    className="form-control"
                     defaultValue={this.props.todo.value}
                     onChange={(event): void => this.props.onChangeHandler(event, this.props.todo.id)}
                 />
-                <button className="btn btn-outline-danger" type="button" onClick={(): void => this.props.onClickHandler(this.props.todo.id)}>
-                    <FontAwesomeIcon icon={faTrashAlt}/> delete
+                <button onClick={(): void => this.props.onClickHandler(this.props.todo.id)}>
+                    <FontAwesomeIcon icon={faTrashAlt}/>
                 </button>
             </div>
         );
