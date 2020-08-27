@@ -16,7 +16,7 @@ export default class Todo extends React.Component<ITodoProps> {
 
     private handleOnInput = (): void => {
         console.log('handleOnInput');
-    }
+    };
 
     public render(): JSX.Element {
         return (
