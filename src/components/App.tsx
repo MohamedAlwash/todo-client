@@ -33,13 +33,13 @@ export default class App extends React.Component<IAppProps, IAppState> {
         };
 
         this.setState({ todos: [...this.state.todos, todo] });
-    }
+    };
 
     private removeTodo = (todoId: number): void => {
         const todos = this.state.todos.filter(todo => todo.id !== todoId);
 
         this.setState({ todos });
-    }
+    };
 
     private editTod = (event: React.ChangeEvent<HTMLInputElement>, todoId: number): void => {
         const value: string = event.target.value;
@@ -48,7 +48,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
         todos[todoIndex] = { ...todos[todoIndex], value };
 
         this.setState({ todos });
-    }
+    };
 
     public render = (): JSX.Element => {
         return (
