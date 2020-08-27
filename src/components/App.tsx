@@ -44,10 +44,10 @@ export default class App extends React.Component<IAppProps, IAppState> {
     private editTod = (event: React.ChangeEvent<HTMLInputElement>, todoId: number): void => {
         const value: string = event.target.value;
         const todoIndex = this.state.todos.findIndex(todo => todo.id === todoId);
-        const newTodos = [...this.state.todos];
-        newTodos[todoIndex] = { ...newTodos[todoIndex], value };
+        const todos = [...this.state.todos];
+        todos[todoIndex] = { ...todos[todoIndex], value };
 
-        this.setState({ todos: newTodos });
+        this.setState({ todos });
     }
 
     public render = (): JSX.Element => {
