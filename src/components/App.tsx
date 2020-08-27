@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ITodo from '../interfaces/ITodo';
 import React from 'react';
 import Todo from './Todo';
-import { faPlus} from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface IAppProps {}
+interface IAppProps { }
 
 interface IAppState {
     todos: ITodo[];
@@ -45,7 +45,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
         const value: string = event.target.value;
         const todoIndex = this.state.todos.findIndex(todo => todo.id === todoId);
         const newTodos = [...this.state.todos];
-        newTodos[todoIndex] = {...newTodos[todoIndex], value};
+        newTodos[todoIndex] = { ...newTodos[todoIndex], value };
 
         this.setState({ todos: newTodos });
     }
@@ -54,7 +54,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
         return (
             <>
                 <button onClick={this.addTodo}>
-                    <FontAwesomeIcon icon={faPlus}/>
+                    <FontAwesomeIcon icon={faPlus} />
                 </button>
                 <br />
                 {this.state.todos.map(todo => {
