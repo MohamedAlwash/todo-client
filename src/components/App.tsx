@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ITodo from '../interfaces/ITodo';
 import React from 'react';
 import Todo from './Todo';
-import { faPlus} from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface IAppProps {}
+interface IAppProps { }
 
 interface IAppState {
     todos: ITodo[];
@@ -33,28 +33,28 @@ export default class App extends React.Component<IAppProps, IAppState> {
         };
 
         this.setState({ todos: [...this.state.todos, todo] });
-    }
+    };
 
     private removeTodo = (todoId: number): void => {
         const todos = this.state.todos.filter(todo => todo.id !== todoId);
 
         this.setState({ todos });
-    }
+    };
 
     private editTod = (event: React.ChangeEvent<HTMLInputElement>, todoId: number): void => {
         const value: string = event.target.value;
         const todoIndex = this.state.todos.findIndex(todo => todo.id === todoId);
-        const newTodos = [...this.state.todos];
-        newTodos[todoIndex] = {...newTodos[todoIndex], value};
+        const todos = [...this.state.todos];
+        todos[todoIndex] = { ...todos[todoIndex], value };
 
-        this.setState({ todos: newTodos });
-    }
+        this.setState({ todos });
+    };
 
     public render = (): JSX.Element => {
         return (
             <>
                 <button onClick={this.addTodo}>
-                    <FontAwesomeIcon icon={faPlus}/>
+                    <FontAwesomeIcon icon={faPlus} />
                 </button>
                 <br />
                 {this.state.todos.map(todo => {
