@@ -19,8 +19,12 @@ export default class App extends React.Component<IAppProps, IAppState> {
         this.state = {
             todos: [
                 {
-                    id: Date.now(),
+                    id: 1,
                     value: 'My first todo'
+                },
+                {
+                    id: 2,
+                    value: 'My second todo'
                 }
             ]
         };
@@ -41,7 +45,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
         this.setState({ todos });
     };
 
-    private editTod = (event: React.ChangeEvent<HTMLInputElement>, todoId: number): void => {
+    private editTod = (event: React.ChangeEvent<HTMLInputElement>, todoId: number): void => {   
         const value: string = event.target.value;
         const todoIndex = this.state.todos.findIndex(todo => todo.id === todoId);
         const todos = [...this.state.todos];
@@ -54,11 +58,14 @@ export default class App extends React.Component<IAppProps, IAppState> {
         return (
             <>
                 <button onClick={this.addTodo}>
-                    <FontAwesomeIcon icon={faPlus} />
+                    <FontAwesomeIcon icon={faPlus} /> Add new todo
                 </button>
-                <br />
                 {this.state.todos.map(todo => {
-                    return <Todo todo={todo} key={todo.id} onChangeHandler={this.editTod} onClickHandler={this.removeTodo} />;
+                    return (
+                        <div key={todo.id}>
+                            <Todo todo={todo} onChangeHandler={this.editTod} onClickHandler={this.removeTodo} />
+                        </div>
+                    );
                 })}
             </>
         );
