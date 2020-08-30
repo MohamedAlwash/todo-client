@@ -8,29 +8,52 @@ interface IAppProps { }
 
 interface IAppState {
     containers: IContainer[];
+    isLoading: boolean;
+    error: boolean;
 }
 
 export default class App extends React.Component<IAppProps, IAppState> {
     public constructor(props: IAppProps) {
-        super(props);      
+        super(props);
+        
+        this.state = {
+            containers: [],
+            isLoading: true,
+            error: false
+        };
     }
 
     public componentDidMount(): void {
         fetch('http://localhost:5000/containers')
             .then(response => response.json())
             .then(
-                (result) => {
-                    this.setState({
-                        containers: result
-                    });
-                },
-                error => console.log(error));
+                containers => this.setState({
+                    containers,
+                    isLoading: false
+                })
+            )
+            .catch(error => {
+                console.log(error);
+                this.setState({ 
+                    isLoading: false,
+                    error: true
+                });
+            });
     }
 
     public render(): JSX.Element {
-        
-        return (
-            <h1>App</h1>
-        );
+        let element = <></>;
+
+        if (this.state.isLoading) {
+            element = <p>Loading</p>;
+        } else if (this.state.containers.length >= 1) {
+            element = <p>Container</p>;
+        } else if (this.state.error){
+            element = <p>Server error</p>;
+        } else {
+            element = <p>No data</p>;
+        }
+
+        return element;
     }
 }

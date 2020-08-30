@@ -6,6 +6,11 @@ interface IContainerProps {
 }
 
 export default class Container extends React.Component {
+
+    public render(): JSX.Element {
+        return <h1>container</h1>;
+    }
+
     // private constructor(props: IAppProps) {
     //     super(props);
 
