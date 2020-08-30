@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ITodo from '../interfaces/ITodo';
+import ITodo from '../interfaces/IContainer';
 import React from 'react';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
@@ -19,7 +19,7 @@ export default class Todo extends React.Component<ITodoProps> {
             <>
                 <input
                     onChange={(event): void => this.props.onChangeHandler(event, this.props.todo.id)}
-                    defaultValue={this.props.todo.value} />
+                    defaultValue={this.props.todo.title} />
                 <button onClick={(): void => this.props.onClickHandler(this.props.todo.id)}>
                     <FontAwesomeIcon icon={faTrashAlt} />
                 </button>
