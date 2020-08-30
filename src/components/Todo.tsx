@@ -14,22 +14,15 @@ export default class Todo extends React.Component<ITodoProps> {
         super(props);
     }
 
-    private handleOnInput = (): void => {
-        console.log('handleOnInput');
-    };
-
     public render(): JSX.Element {
         return (
             <>
-                <div
-                    suppressContentEditableWarning
-                    contentEditable
-                    onInput={this.handleOnInput}>{this.props.todo.value}
-                </div>
+                <input
+                    onChange={(event): void => this.props.onChangeHandler(event, this.props.todo.id)}
+                    defaultValue={this.props.todo.value} />
                 <button onClick={(): void => this.props.onClickHandler(this.props.todo.id)}>
                     <FontAwesomeIcon icon={faTrashAlt} />
                 </button>
-                <br />
             </>
         );
     }
