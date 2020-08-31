@@ -10,7 +10,7 @@ export default class Container extends React.Component<IContainerProps> {
         super(props);
     }
 
-    public render = (): JSX.Element => <input defaultValue={this.props.container.title} />
+    public render = (): JSX.Element => <input defaultValue={this.props.container.title} />;
 
     // private addTodo = (): void => {
     //     const todo: ITodo = {
