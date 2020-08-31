@@ -5,28 +5,12 @@ interface IContainerProps {
     container: IContainer;
 }
 
-export default class Container extends React.Component {
-
-    public render(): JSX.Element {
-        return <h1>container</h1>;
+export default class Container extends React.Component<IContainerProps> {
+    public constructor(props: IContainerProps) {
+        super(props);
     }
 
-    // private constructor(props: IAppProps) {
-    //     super(props);
-
-    //     this.state = {
-    //         todos: [
-    //             {
-    //                 id: 1,
-    //                 title: 'My first todo'
-    //             },
-    //             {
-    //                 id: 2,
-    //                 title: 'My second todo'
-    //             }
-    //         ]
-    //     };
-    // }
+    public render = (): JSX.Element => <input defaultValue={this.props.container.title} />
 
     // private addTodo = (): void => {
     //     const todo: ITodo = {

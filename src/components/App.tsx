@@ -41,13 +41,13 @@ export default class App extends React.Component<IAppProps, IAppState> {
             });
     }
 
-    public render(): JSX.Element {
-        let element = <></>;
+    public render(): React.ReactNode {
+        let element: React.ReactNode = <></>;
 
         if (this.state.isLoading) {
             element = <p>Loading</p>;
         } else if (this.state.containers.length >= 1) {
-            element = <p>Container</p>;
+            element = this.renderContainers();
         } else if (this.state.error){
             element = <p>Server error</p>;
         } else {
@@ -56,4 +56,6 @@ export default class App extends React.Component<IAppProps, IAppState> {
 
         return element;
     }
+
+    private renderContainers = (): React.ReactNode => this.state.containers.map(container => <Container key={container.id} container={container} />);
 }
