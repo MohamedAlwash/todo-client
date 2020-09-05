@@ -1,21 +1,24 @@
-import '../assets/scss/App.scss';
+import '../assets/scss/ContainerOverview.scss';
 import Container from './Container';
+import { ContainerService } from '../services/ContainerService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import IContainer from '../interfaces/IContainer';
+import { IContainer } from '../interfaces/IContainer';
 import React from 'react';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface IAppProps { }
+interface IContainerOverviewProps { }
 
-interface IAppState {
+interface IContainerOverviewState {
     containers: IContainer[];
     isLoading: boolean;
     error: boolean;
 }
 
-export default class App extends React.Component<IAppProps, IAppState> {
-    public constructor(props: IAppProps) {
+export default class ContainerOverview extends React.Component<IContainerOverviewProps, IContainerOverviewState> {
+    //#region lifecycle
+    
+    public constructor(props: IContainerOverviewProps) {
         super(props);
 
         this.state = {
@@ -31,11 +34,18 @@ export default class App extends React.Component<IAppProps, IAppState> {
             .then(containers => this.setState({ containers }))
             .catch(() => this.setState({ error: true }))
             .finally(() => this.setState({ isLoading: false }));
+
+        const containerService = new ContainerService('/containers');
+        containerService.GetContainers();
     }
+
+    //#endregion
 
     private addContainer(): void {
         console.log('addContainer');
     }
+
+    //#region render
 
     public render(): React.ReactNode {
         let element: React.ReactNode;
@@ -61,4 +71,6 @@ export default class App extends React.Component<IAppProps, IAppState> {
     }
 
     private renderContainers = (): React.ReactNode => this.state.containers.map(container => <Container key={container.id} container={container} />);
+
+    //#endregion
 }

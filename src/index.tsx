@@ -1,12 +1,12 @@
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
-import App from './components/App';
+import ContainerOverview from './components/ContainerOverview';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <ContainerOverview />
     </React.StrictMode>,
     document.getElementById('root')
 );

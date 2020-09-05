@@ -1,4 +1,4 @@
-import IContainer from '../interfaces/IContainer';
+import { IContainer } from '../interfaces/IContainer';
 import React from 'react';
 
 interface IContainerProps {
